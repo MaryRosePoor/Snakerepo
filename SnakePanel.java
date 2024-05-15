@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 public class SnakePanel extends JPanel {
-	int[] snake = {(200, 200), (210, 200), (220, 200)};
+	int[][] snake = {{200, 200}, {210, 200}, {220, 200}};
 	
 	
 	public Dimension getPreferredSize() {
@@ -16,8 +16,8 @@ public class SnakePanel extends JPanel {
 		g.fillRect(0, 0, 500,500);
 		
 		g.setColor(Color.green);
-		for (int i=0; i<len(snake); i++) {
-			g.fillRect(snake[0][0]*10, snake[0][0]*10, 10, 10);
+		for (int i=0; i<3; i++) {
+			g.fillRect(snake[i][0], snake[i][1], 10, 10);
 		}
 	}
 	
