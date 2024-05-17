@@ -8,38 +8,30 @@ import java.awt.event.KeyEvent;
 
 public class Snake {
     List<List<Integer>> snakeLocation;
-    //List<List<Character>> board = new ArrayList<>();
+    List<List<Character>> board;
 	char snakeDirection;
 
     public Snake() {
-        snakeLocation = new ArrayList<>();
-        snakeLocation.add((List.of(20, 20)));
-        snakeLocation.add((List.of(21, 20)));
-        snakeLocation.add((List.of(22, 20)));
+        //Initializing snakeLocation
+		snakeLocation = new ArrayList<>();
+		for (int i=20; i<30; i++) {
+			snakeLocation.add(List.of(i, 20));
+		}
 		
-		snakeDirection = 'l';
+		//Initializing board
+		board = new ArrayList<>();
+		List<Character> templist = new ArrayList<>();
+		for (int i=0; i<50; i++) {
+			templist.add('_');
+		}
+		for (int i=0; i<50; i++) {
+			board.add(templist);
+		}
 
-        //List.of(List.of(20, 20),List.of(21, 20), List.of(22, 20));
-       // ArrayList<List<Integer>> snakeLocation1=)
-       // snake.setSnakeLocation()
-        //this.snakeLocation = snakeLocation;
+		snakeDirection = 'l';
     }
 
-
-
     public void draw(Graphics g) {
-        //int[][] snake = {{20, 20}, {21, 20}, {22, 20}};
-        /*
-        char[] templist[50];
-
-        for (int i = 0; i < 50; i++) {
-            templist[i] = "_";
-        }
-        for (int i = 0; i < 50; i++) {
-            board[i] = templist[];
-        }
-        */
-
         g.setColor(Color.green);
         for (int i = 0; i < snakeLocation.size()-1; i++) {
             g.fillRect(snakeLocation.get(i).get(0) * 10, snakeLocation.get(i).get(1) * 10, 10, 10);
@@ -47,7 +39,6 @@ public class Snake {
     }
 	
 	public void turn(KeyEvent e) {
-		
 		if ((e.getKeyCode() == 40) && (snakeDirection != 'd')) {
 			snakeDirection = 'u';
 		} else if ((e.getKeyCode() == 38) && (snakeDirection != 'u')) {
@@ -57,6 +48,23 @@ public class Snake {
 		} else if ((e.getKeyCode() == 39) && (snakeDirection != 'l')) {
 			snakeDirection = 'r';
 		}
+	}
+	
+	public void checkCollision() {
+		if (snakeLocation.get(0).get(0) < 0 || snakeLocation.get(0).get(0) >50) {
+			System.out.println("off screen");
+		}
+		if (snakeLocation.get(0).get(1) < 0 || snakeLocation.get(0).get(1) >50) {
+			System.out.println("off screen");
+		}
+		
+		//List<List<Integer>> tempLocation = new ArrayList<>();
+		for (int i=1; i<snakeLocation.size()-1; i++) {
+			if (snakeLocation.get(i).equals(snakeLocation.get(0))){
+				System.out.println("touching");
+			}
+		}
+		
 	}
 
     public void move() {
@@ -71,6 +79,7 @@ public class Snake {
 			dx = -1;
 		}
 		
+		checkCollision();
         snakeLocation.add(0, List.of(snakeLocation.get(0).get(0) + dx, snakeLocation.get(0).get(1) + dy));
         snakeLocation.remove(snakeLocation.size()-1);
     }

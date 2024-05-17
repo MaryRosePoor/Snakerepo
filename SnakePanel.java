@@ -32,7 +32,6 @@ public class SnakePanel extends JPanel implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		snake.turn(e);
 	}
-	
 	public void keyReleased(KeyEvent e) {}
 	public void keyTyped(KeyEvent e) {}
 
