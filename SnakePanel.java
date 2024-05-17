@@ -5,9 +5,19 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SnakePanel extends JPanel {
-    Snake snake = new Snake();
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
+public class SnakePanel extends JPanel {
+    Snake snake;
+	
+	public SnakePanel() {
+		snake = new Snake();
+		setFocusable(true);
+		addKeyListener(this);
+	}
+	
+	
 
     public Dimension getPreferredSize() {
         return new Dimension(500, 500);
@@ -21,6 +31,10 @@ public class SnakePanel extends JPanel {
         snake.draw(g);
     }
 
+	public void keyPressed(KeyEvent e) {
+		snake.turn(e);
+	}
+
     public void animate() {
         while (true) {
             snake.move();
@@ -30,9 +44,7 @@ public class SnakePanel extends JPanel {
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-
-
-
+			
             repaint();
         }
     }
