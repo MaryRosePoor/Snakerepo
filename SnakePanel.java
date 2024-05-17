@@ -8,7 +8,7 @@ import java.util.List;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
-public class SnakePanel extends JPanel {
+public class SnakePanel extends JPanel implements KeyListener{
     Snake snake;
 	
 	public SnakePanel() {
@@ -17,8 +17,6 @@ public class SnakePanel extends JPanel {
 		addKeyListener(this);
 	}
 	
-	
-
     public Dimension getPreferredSize() {
         return new Dimension(500, 500);
 
@@ -34,6 +32,9 @@ public class SnakePanel extends JPanel {
 	public void keyPressed(KeyEvent e) {
 		snake.turn(e);
 	}
+	
+	public void keyReleased(KeyEvent e) {}
+	public void keyTyped(KeyEvent e) {}
 
     public void animate() {
         while (true) {

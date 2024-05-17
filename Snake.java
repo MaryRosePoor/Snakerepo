@@ -48,10 +48,10 @@ public class Snake {
 	
 	public void turn(KeyEvent e) {
 		
-		if ((e.getKeyCode() == 40) && (snakeDirection != 'u')) {
-			snakeDirection = 'd';
-		} else if ((e.getKeyCode() == 38) && (snakeDirection != 'd')) {
+		if ((e.getKeyCode() == 40) && (snakeDirection != 'd')) {
 			snakeDirection = 'u';
+		} else if ((e.getKeyCode() == 38) && (snakeDirection != 'u')) {
+			snakeDirection = 'd';
 		} else if ((e.getKeyCode() == 37) && (snakeDirection != 'r')) {
 			snakeDirection = 'l';
 		} else if ((e.getKeyCode() == 39) && (snakeDirection != 'l')) {

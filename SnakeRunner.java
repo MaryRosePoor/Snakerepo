@@ -11,7 +11,10 @@ public class SnakeRunner {
 		frame.add(canvas);
 		frame.pack();
 		frame.setVisible(true);
+		
 		canvas.setFocusable(true);
+		canvas.requestFocusInWindow();
+
 
 		canvas.animate();
 	}
