@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 
 public class Snake {
     List<List<Integer>> snakeLocation;
-    List<List<Character>> board;
+    //List<List<Character>> board;
 	char snakeDirection;
 
     public Snake() {
@@ -18,6 +18,7 @@ public class Snake {
 			snakeLocation.add(List.of(i, 20));
 		}
 		
+		/*
 		//Initializing board
 		board = new ArrayList<>();
 		List<Character> templist = new ArrayList<>();
@@ -27,6 +28,7 @@ public class Snake {
 		for (int i=0; i<50; i++) {
 			board.add(templist);
 		}
+		*/
 
 		snakeDirection = 'l';
     }
@@ -51,20 +53,23 @@ public class Snake {
 	}
 	
 	public void checkCollision() {
+		//Edge collision
 		if (snakeLocation.get(0).get(0) < 0 || snakeLocation.get(0).get(0) >50) {
 			System.out.println("off screen");
+			System.exit(0);
 		}
 		if (snakeLocation.get(0).get(1) < 0 || snakeLocation.get(0).get(1) >50) {
 			System.out.println("off screen");
+			System.exit(0);
 		}
 		
-		//List<List<Integer>> tempLocation = new ArrayList<>();
+		//Snake collision
 		for (int i=1; i<snakeLocation.size()-1; i++) {
 			if (snakeLocation.get(i).equals(snakeLocation.get(0))){
 				System.out.println("touching");
+				System.exit(0);
 			}
-		}
-		
+		}	
 	}
 
     public void move() {

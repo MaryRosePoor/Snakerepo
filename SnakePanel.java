@@ -10,11 +10,14 @@ import java.awt.event.KeyEvent;
 
 public class SnakePanel extends JPanel implements KeyListener{
     Snake snake;
+	Apple apple;
 	
 	public SnakePanel() {
 		snake = new Snake();
 		setFocusable(true);
 		addKeyListener(this);
+		
+		apple = new Apple();
 	}
 	
     public Dimension getPreferredSize() {
