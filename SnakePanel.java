@@ -2,8 +2,6 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.List;
 
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
@@ -37,6 +35,7 @@ public class SnakePanel extends JPanel implements KeyListener{
         g.setColor(Color.black);
         g.fillRect(0, 0, 500, 500);
         snake.draw(g);
+        apple.draw(g);
     }
 
 	public void keyPressed(KeyEvent e) {
@@ -48,8 +47,10 @@ public class SnakePanel extends JPanel implements KeyListener{
     public void animate() {
         while (true) {
             snake.move();
-            if (snake.checkCollision()) {
+            if (snake.checkLoseCollision()) {
                 startGame();
+            } else if (snake.checkAppleCollision(apple.getAppleLocation())) {
+                apple = new Apple();
             }
 
             try {

@@ -3,7 +3,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
 public class Snake {
@@ -39,14 +38,14 @@ public class Snake {
 		}
 	}
 	
-	public boolean checkCollision() {
+	public boolean checkLoseCollision() {
 		//Edge collision
 		if (snakeLocation.get(0).get(0) < 0 || snakeLocation.get(0).get(0) >50) {
 			return true;
 		} else if (snakeLocation.get(0).get(1) < 0 || snakeLocation.get(0).get(1) >50) {
 			return true;
 		}
-		
+
 		//Snake collision
 		for (int i=1; i<snakeLocation.size()-1; i++) {
 			if (snakeLocation.get(i).equals(snakeLocation.get(0))) {
@@ -54,6 +53,14 @@ public class Snake {
 			}
 		}
 		return false;
+	}
+
+	public boolean checkAppleCollision(List appleLocation) {
+		if (snakeLocation.get(0).equals(appleLocation)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
     public void move() {
