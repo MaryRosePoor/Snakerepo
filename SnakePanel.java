@@ -19,6 +19,13 @@ public class SnakePanel extends JPanel implements KeyListener{
 		
 		apple = new Apple();
 	}
+
+    public void startGame() {
+        snake = new Snake();
+        apple = new Apple();
+
+        animate();
+    }
 	
     public Dimension getPreferredSize() {
         return new Dimension(500, 500);
@@ -41,6 +48,9 @@ public class SnakePanel extends JPanel implements KeyListener{
     public void animate() {
         while (true) {
             snake.move();
+            if (snake.checkCollision()) {
+                startGame();
+            }
 
             try {
                 Thread.sleep(150);

@@ -15,6 +15,6 @@ public class SnakeRunner {
 		canvas.setFocusable(true);
 		canvas.requestFocusInWindow();
 
-		canvas.animate();
+		canvas.startGame();
 	}
 }

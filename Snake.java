@@ -8,27 +8,14 @@ import java.awt.event.KeyEvent;
 
 public class Snake {
     List<List<Integer>> snakeLocation;
-    //List<List<Character>> board;
 	char snakeDirection;
 
     public Snake() {
         //Initializing snakeLocation
 		snakeLocation = new ArrayList<>();
-		for (int i=20; i<30; i++) {
-			snakeLocation.add(List.of(i, 20));
+		for (int i=24; i<34; i++) {
+			snakeLocation.add(List.of(i, 24));
 		}
-		
-		/*
-		//Initializing board
-		board = new ArrayList<>();
-		List<Character> templist = new ArrayList<>();
-		for (int i=0; i<50; i++) {
-			templist.add('_');
-		}
-		for (int i=0; i<50; i++) {
-			board.add(templist);
-		}
-		*/
 
 		snakeDirection = 'l';
     }
@@ -52,24 +39,21 @@ public class Snake {
 		}
 	}
 	
-	public void checkCollision() {
+	public boolean checkCollision() {
 		//Edge collision
 		if (snakeLocation.get(0).get(0) < 0 || snakeLocation.get(0).get(0) >50) {
-			System.out.println("off screen");
-			System.exit(0);
-		}
-		if (snakeLocation.get(0).get(1) < 0 || snakeLocation.get(0).get(1) >50) {
-			System.out.println("off screen");
-			System.exit(0);
+			return true;
+		} else if (snakeLocation.get(0).get(1) < 0 || snakeLocation.get(0).get(1) >50) {
+			return true;
 		}
 		
 		//Snake collision
 		for (int i=1; i<snakeLocation.size()-1; i++) {
-			if (snakeLocation.get(i).equals(snakeLocation.get(0))){
-				System.out.println("touching");
-				System.exit(0);
+			if (snakeLocation.get(i).equals(snakeLocation.get(0))) {
+				return true;
 			}
-		}	
+		}
+		return false;
 	}
 
     public void move() {
@@ -83,8 +67,7 @@ public class Snake {
 		} else if (snakeDirection == 'l') {
 			dx = -1;
 		}
-		
-		checkCollision();
+
         snakeLocation.add(0, List.of(snakeLocation.get(0).get(0) + dx, snakeLocation.get(0).get(1) + dy));
         snakeLocation.remove(snakeLocation.size()-1);
     }
