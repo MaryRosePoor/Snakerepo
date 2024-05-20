@@ -21,6 +21,7 @@ public class Apple {
 					continue;
 				}
 			}
+			System.out.println(appleLocation);
 			break;
 		}
 		

@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 public class SnakePanel extends JPanel implements KeyListener{
     Snake snake;
 	Apple apple;
+	int speed = 140;
 	
 	public SnakePanel() {
 		addKeyListener(this);
@@ -33,8 +34,8 @@ public class SnakePanel extends JPanel implements KeyListener{
         super.paintComponent(g);
         g.setColor(Color.black);
         g.fillRect(0, 0, 500, 500);
-        snake.draw(g);
         apple.draw(g);
+		snake.draw(g);
     }
 
 	public void keyPressed(KeyEvent e) {
@@ -42,6 +43,12 @@ public class SnakePanel extends JPanel implements KeyListener{
 	}
 	public void keyReleased(KeyEvent e) {}
 	public void keyTyped(KeyEvent e) {}
+	
+	public int checkSpeed(int speed) {
+		if ((snake.snakeLocation.size()-10)%5 ==0) {
+			return (speed - 10);
+		} else {return speed;}
+	}
 
     public void animate() {
         while (true) {
@@ -54,7 +61,7 @@ public class SnakePanel extends JPanel implements KeyListener{
 			} else {snake.move(false);}
 			
             try {
-                Thread.sleep(140);
+                Thread.sleep(checkSpeed(speed));
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
