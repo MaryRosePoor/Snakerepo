@@ -11,16 +11,15 @@ public class SnakePanel extends JPanel implements KeyListener{
 	Apple apple;
 	
 	public SnakePanel() {
-		snake = new Snake();
-		setFocusable(true);
 		addKeyListener(this);
 		
-		apple = new Apple();
+		snake = new Snake();
+		apple = new Apple(snake.snakeLocation);
 	}
 
     public void startGame() {
         snake = new Snake();
-        apple = new Apple();
+        apple = new Apple(snake.snakeLocation);
 
         animate();
     }
@@ -46,15 +45,16 @@ public class SnakePanel extends JPanel implements KeyListener{
 
     public void animate() {
         while (true) {
-            snake.move();
             if (snake.checkLoseCollision()) {
                 startGame();
             } else if (snake.checkAppleCollision(apple.getAppleLocation())) {
-                apple = new Apple();
-            }
-
+                apple = new Apple(snake.snakeLocation);
+				snake.move(true);
+				System.out.println(snake.snakeLocation.size());
+			} else {snake.move(false);}
+			
             try {
-                Thread.sleep(150);
+                Thread.sleep(140);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }

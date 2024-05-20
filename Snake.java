@@ -63,7 +63,7 @@ public class Snake {
 		}
 	}
 
-    public void move() {
+    public void move(boolean grow) {
 		int dx = 0, dy = 0;
 		if (snakeDirection == 'u') {
 			dy = 1;
@@ -74,8 +74,10 @@ public class Snake {
 		} else if (snakeDirection == 'l') {
 			dx = -1;
 		}
-
+	
         snakeLocation.add(0, List.of(snakeLocation.get(0).get(0) + dx, snakeLocation.get(0).get(1) + dy));
-        snakeLocation.remove(snakeLocation.size()-1);
+        if (!grow) {
+			snakeLocation.remove(snakeLocation.size()-1);
+		} 
     }
 }
