@@ -60,8 +60,8 @@ public class SnakePanel extends JPanel implements KeyListener{
 				snake.move(true);
 				speed = checkSpeed(speed);
 				
-				//System.out.println("speed: " + (speed));
-				//System.out.println("size: " + (snake.snakeLocation.size()));
+				System.out.println("speed: " + (speed));
+				System.out.println("size: " + (snake.snakeLocation.size()));
 				
 			} else {snake.move(false);}
 			
