@@ -9,11 +9,10 @@ import java.awt.event.KeyEvent;
 public class SnakePanel extends JPanel implements KeyListener{
     Snake snake;
 	Apple apple;
-	int speed = 140;
+	int speed;
 	
 	public SnakePanel() {
 		addKeyListener(this);
-		
 		snake = new Snake();
 		apple = new Apple(snake.snakeLocation);
 	}
@@ -21,6 +20,7 @@ public class SnakePanel extends JPanel implements KeyListener{
     public void startGame() {
         snake = new Snake();
         apple = new Apple(snake.snakeLocation);
+		speed = 180;
 
         animate();
     }
@@ -45,8 +45,9 @@ public class SnakePanel extends JPanel implements KeyListener{
 	public void keyTyped(KeyEvent e) {}
 	
 	public int checkSpeed(int speed) {
-		if ((snake.snakeLocation.size()-10)%5 ==0) {
-			return (speed - 10);
+		if ((snake.snakeLocation.size()-10)%3 == 0) {
+			return (speed - 20);
+			
 		} else {return speed;}
 	}
 
@@ -57,11 +58,15 @@ public class SnakePanel extends JPanel implements KeyListener{
             } else if (snake.checkAppleCollision(apple.getAppleLocation())) {
                 apple = new Apple(snake.snakeLocation);
 				snake.move(true);
-				System.out.println(snake.snakeLocation.size());
+				speed = checkSpeed(speed);
+				
+				//System.out.println("speed: " + (speed));
+				//System.out.println("size: " + (snake.snakeLocation.size()));
+				
 			} else {snake.move(false);}
 			
             try {
-                Thread.sleep(checkSpeed(speed));
+                Thread.sleep(speed);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }

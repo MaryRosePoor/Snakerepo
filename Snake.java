@@ -40,9 +40,9 @@ public class Snake {
 	
 	public boolean checkLoseCollision() {
 		//Edge collision
-		if (snakeLocation.get(0).get(0) < 0 || snakeLocation.get(0).get(0) >50) {
+		if (snakeLocation.get(0).get(0) < 0 || snakeLocation.get(0).get(0) >= 50) {
 			return true;
-		} else if (snakeLocation.get(0).get(1) < 0 || snakeLocation.get(0).get(1) >50) {
+		} else if (snakeLocation.get(0).get(1) < 0 || snakeLocation.get(0).get(1) >= 50) {
 			return true;
 		}
 

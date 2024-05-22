@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Math.round;
+import static java.lang.Math.floor;
 
 public class Apple {
 	List<Integer> appleLocation;
@@ -13,7 +13,7 @@ public class Apple {
 		while (true) {
 			//Pick random location for apple
 			for (int i=0; i<2; i++) {
-			appleLocation.add((int)round(Math.random()*50));
+			appleLocation.add((int)floor(Math.random()*50));
 			}
 			//Check if apple location overlaps with the snake
 			for (int i=0; i<snakeLocation.size()-1; i++) {
@@ -21,7 +21,7 @@ public class Apple {
 					continue;
 				}
 			}
-			System.out.println(appleLocation);
+			//System.out.println(appleLocation);
 			break;
 		}
 		
