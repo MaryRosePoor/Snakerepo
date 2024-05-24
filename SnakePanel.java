@@ -9,31 +9,31 @@ import java.awt.event.KeyEvent;
 public class SnakePanel extends JPanel implements KeyListener{
     Snake snake;
 	Apple apple;
-	int speed;
+	int speed, unit = 15, dimension = 500;
 	
 	public SnakePanel() {
 		addKeyListener(this);
-		snake = new Snake();
-		apple = new Apple(snake.snakeLocation);
+		snake = new Snake(unit, dimension);
+		apple = new Apple(snake.snakeLocation, unit, dimension);
 	}
 
     public void startGame() {
-        snake = new Snake();
-        apple = new Apple(snake.snakeLocation);
+        snake = new Snake(unit, dimension);
+        apple = new Apple(snake.snakeLocation, unit, dimension);
 		speed = 180;
 
         animate();
     }
 	
     public Dimension getPreferredSize() {
-        return new Dimension(500, 500);
+        return new Dimension(dimension, dimension);
 
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.black);
-        g.fillRect(0, 0, 500, 500);
+        g.fillRect(0, 0, dimension, dimension);
         apple.draw(g);
 		snake.draw(g);
     }
@@ -56,7 +56,7 @@ public class SnakePanel extends JPanel implements KeyListener{
             if (snake.checkLoseCollision()) {
                 startGame();
             } else if (snake.checkAppleCollision(apple.getAppleLocation())) {
-                apple = new Apple(snake.snakeLocation);
+                apple = new Apple(snake.snakeLocation, unit, dimension);
 				snake.move(true);
 				speed = checkSpeed(speed);
 				

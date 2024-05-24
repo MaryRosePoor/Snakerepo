@@ -9,15 +9,15 @@ public class Apple {
 	List<Integer> appleLocation;
 	int unit;
 	
-	public Apple(List snakeLocation) {
+	public Apple(List snakeLocation, int unit, int dimension) {
 		appleLocation = new ArrayList<>();
-		unit = 15;
+		this.unit = unit;
 		boolean loop = true;
 		while (loop) {
 			loop = false;
 			//Pick random location for apple
 			for (int i=0; i<2; i++) {
-			appleLocation.add((int)floor(Math.random()*(500/unit-1)));
+			appleLocation.add((int)floor(Math.random()*(dimension/unit-1)));
 			}	
 			
 			//Check if apple location overlaps with the snake

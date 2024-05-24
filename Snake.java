@@ -8,13 +8,15 @@ import java.awt.event.KeyEvent;
 public class Snake {
     List<List<Integer>> snakeLocation;
 	char snakeDirection;
-	int unit = 15;
+	int unit, dimension;
 
-    public Snake() {
+    public Snake(int unit, int dimension) {
+		this.unit = unit;
+		this.dimension = dimension;
         //Initializing snakeLocation
 		snakeLocation = new ArrayList<>();
-		for (int i=(250/unit); i<(250/unit + 10); i++) {
-			snakeLocation.add(List.of(i, (250/unit)));
+		for (int i=((dimension/2)/unit); i<((dimension/2)/unit + 10); i++) {
+			snakeLocation.add(List.of(i, ((dimension/2)/unit)));
 		}
 		//System.out.println("starting location: " + snakeLocation.get(0));
 		snakeDirection = 'l';
@@ -41,9 +43,9 @@ public class Snake {
 	
 	public boolean checkLoseCollision() {
 		//Edge collision
-		if (snakeLocation.get(0).get(0) < 0 || snakeLocation.get(0).get(0) >= 500/unit) {
+		if (snakeLocation.get(0).get(0) < 0 || snakeLocation.get(0).get(0) >= dimension/unit) {
 			return true;
-		} else if (snakeLocation.get(0).get(1) < 0 || snakeLocation.get(0).get(1) >= 500/unit) {
+		} else if (snakeLocation.get(0).get(1) < 0 || snakeLocation.get(0).get(1) >= dimension/unit) {
 			return true;
 		}
 
