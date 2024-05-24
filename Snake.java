@@ -8,21 +8,22 @@ import java.awt.event.KeyEvent;
 public class Snake {
     List<List<Integer>> snakeLocation;
 	char snakeDirection;
+	int unit = 15;
 
     public Snake() {
         //Initializing snakeLocation
 		snakeLocation = new ArrayList<>();
-		for (int i=24; i<34; i++) {
-			snakeLocation.add(List.of(i, 24));
+		for (int i=(250/unit); i<(250/unit + 10); i++) {
+			snakeLocation.add(List.of(i, (250/unit)));
 		}
-
+		//System.out.println("starting location: " + snakeLocation.get(0));
 		snakeDirection = 'l';
     }
 
     public void draw(Graphics g) {
         g.setColor(Color.green);
         for (int i = 0; i < snakeLocation.size()-1; i++) {
-            g.fillRect(snakeLocation.get(i).get(0) * 10, snakeLocation.get(i).get(1) * 10, 10, 10);
+            g.fillRect(snakeLocation.get(i).get(0) * unit, snakeLocation.get(i).get(1) * unit, unit, unit);
         }
     }
 	
@@ -40,9 +41,9 @@ public class Snake {
 	
 	public boolean checkLoseCollision() {
 		//Edge collision
-		if (snakeLocation.get(0).get(0) < 0 || snakeLocation.get(0).get(0) >= 50) {
+		if (snakeLocation.get(0).get(0) < 0 || snakeLocation.get(0).get(0) >= 500/unit) {
 			return true;
-		} else if (snakeLocation.get(0).get(1) < 0 || snakeLocation.get(0).get(1) >= 50) {
+		} else if (snakeLocation.get(0).get(1) < 0 || snakeLocation.get(0).get(1) >= 500/unit) {
 			return true;
 		}
 
