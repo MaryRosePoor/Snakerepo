@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 public class SnakePanel extends JPanel implements KeyListener{
     Snake snake;
 	Apple apple;
-	int speed, unit = 15, dimension = 500;
+	int speed, unit = 15, dimension = 495;
 	
 	public SnakePanel() {
 		addKeyListener(this);
