@@ -1,7 +1,9 @@
 import javax.swing.JPanel;
+import java.awt.Dimension;
+
 import java.awt.Graphics;
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.Font;	
 
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
@@ -9,37 +11,49 @@ import java.awt.event.KeyEvent;
 public class SnakePanel extends JPanel implements KeyListener{
     Snake snake;
 	Apple apple;
+	Text words;
 	int speed, unit = 15, dimension = 495;
+	boolean paused = true;
+	
+	   public Dimension getPreferredSize() {
+        return new Dimension(dimension, dimension);
+
+    }
+
 	
 	public SnakePanel() {
 		addKeyListener(this);
 		snake = new Snake(unit, dimension);
 		apple = new Apple(snake.snakeLocation, unit, dimension);
+		words = new Text();
 	}
 
     public void startGame() {
         snake = new Snake(unit, dimension);
         apple = new Apple(snake.snakeLocation, unit, dimension);
 		speed = 180;
-
-        animate();
+		
+		showText();
+		while (paused) {
+			System.out.println(paused);
+		}
+		animate();
     }
-	
-    public Dimension getPreferredSize() {
-        return new Dimension(dimension, dimension);
-
-    }
-
+	 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.black);
         g.fillRect(0, 0, dimension, dimension);
         apple.draw(g);
 		snake.draw(g);
+		words.write(g);	
     }
 
 	public void keyPressed(KeyEvent e) {
+		
 		snake.turn(e);
+		paused = false;
+		System.out.println("key pressed");
 	}
 	public void keyReleased(KeyEvent e) {}
 	public void keyTyped(KeyEvent e) {}
@@ -52,6 +66,7 @@ public class SnakePanel extends JPanel implements KeyListener{
 	}
 
     public void animate() {
+		
         while (true) {
             if (snake.checkLoseCollision()) {
                 startGame();
@@ -74,4 +89,10 @@ public class SnakePanel extends JPanel implements KeyListener{
             repaint();
         }
     }
+	
+	public void showText() {
+		words.setWords("test");
+		
+		repaint();
+	}
 }
