@@ -24,6 +24,7 @@ public class Apple {
 			for (int i=0; i<snakeLocation.size()-1; i++) {
 				if (snakeLocation.get(i).equals(appleLocation)) {
 					System.out.println("overlap");
+					appleLocation.clear();
 					loop = true;
 				}
 			}

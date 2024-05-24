@@ -46,7 +46,7 @@ public class SnakePanel extends JPanel implements KeyListener{
 	
 	public int checkSpeed(int speed) {
 		if ((snake.snakeLocation.size()-10)%5 == 0) {
-			return (speed - 20);
+			return (speed - 10);
 			
 		} else {return speed;}
 	}
