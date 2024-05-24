@@ -12,7 +12,9 @@ public class Apple {
 	public Apple(List snakeLocation) {
 		appleLocation = new ArrayList<>();
 		unit = 15;
-		while (true) {
+		boolean loop = true;
+		while (loop) {
+			loop = false;
 			//Pick random location for apple
 			for (int i=0; i<2; i++) {
 			appleLocation.add((int)floor(Math.random()*(500/unit-1)));
@@ -21,13 +23,13 @@ public class Apple {
 			//Check if apple location overlaps with the snake
 			for (int i=0; i<snakeLocation.size()-1; i++) {
 				if (snakeLocation.get(i).equals(appleLocation)) {
-					continue;
+					System.out.println("overlap");
+					loop = true;
 				}
 			}
-			System.out.println(appleLocation);
-			break;
+			
 		}
-		
+		System.out.println(appleLocation);			
 	}
 
 	public void draw(Graphics g) {
