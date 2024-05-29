@@ -30,7 +30,7 @@ public class Apple {
 			}
 			
 		}
-		System.out.println(appleLocation);			
+		//System.out.println(appleLocation);			
 	}
 
 	public void draw(Graphics g) {

@@ -18,7 +18,7 @@ public class Snake {
 		for (int i=((dimension/2)/unit); i<((dimension/2)/unit + 10); i++) {
 			snakeLocation.add(List.of(i, ((dimension/2)/unit)));
 		}
-		System.out.println("starting location: " + snakeLocation.get(0));
+		//System.out.println("starting location: " + snakeLocation.get(0));
 		snakeDirection = 'l';
     }
 

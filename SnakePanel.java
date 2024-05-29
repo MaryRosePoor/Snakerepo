@@ -13,7 +13,7 @@ public class SnakePanel extends JPanel implements KeyListener{
 	Apple apple;
 	Text words;
 	int speed, unit = 15, dimension = 495;
-	boolean paused = true;
+	boolean paused;
 	
 	   public Dimension getPreferredSize() {
         return new Dimension(dimension, dimension);
@@ -26,17 +26,21 @@ public class SnakePanel extends JPanel implements KeyListener{
 		snake = new Snake(unit, dimension);
 		apple = new Apple(snake.snakeLocation, unit, dimension);
 		words = new Text();
+		paused = true;
 	}
 
     public void startGame() {
-        snake = new Snake(unit, dimension);
+        showText("Score: " + (snake.snakeLocation.size()-10));
+		
+		snake = new Snake(unit, dimension);
         apple = new Apple(snake.snakeLocation, unit, dimension);
 		speed = 180;
 		
-		showText();
+		paused = true;
 		while (paused) {
-			System.out.println(paused);
+			System.out.print("");
 		}
+		
 		animate();
     }
 	 
@@ -53,7 +57,7 @@ public class SnakePanel extends JPanel implements KeyListener{
 		
 		snake.turn(e);
 		paused = false;
-		System.out.println("key pressed");
+		//System.out.println("key pressed");
 	}
 	public void keyReleased(KeyEvent e) {}
 	public void keyTyped(KeyEvent e) {}
@@ -75,8 +79,8 @@ public class SnakePanel extends JPanel implements KeyListener{
 				snake.move(true);
 				speed = checkSpeed(speed);
 				
-				System.out.println("speed: " + (speed));
-				System.out.println("size: " + (snake.snakeLocation.size()));
+				//System.out.println("speed: " + (speed));
+				//System.out.println("size: " + (snake.snakeLocation.size()));
 				
 			} else {snake.move(false);}
 			
@@ -86,12 +90,14 @@ public class SnakePanel extends JPanel implements KeyListener{
                 Thread.currentThread().interrupt();
             }
 			
+			words.setWords("");
+			
             repaint();
         }
     }
 	
-	public void showText() {
-		words.setWords("test");
+	public void showText(String message) {
+		words.setWords(message);
 		
 		repaint();
 	}
