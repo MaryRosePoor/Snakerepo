@@ -9,20 +9,21 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
 public class SnakePanel extends JPanel implements KeyListener{
-    Snake snake;
+    Background background;
+	Snake snake;
 	Apple apple;
 	Text words;
 	int speed, unit = 15, dimension = 495;
 	boolean paused;
 	
-	   public Dimension getPreferredSize() {
+	public Dimension getPreferredSize() {
         return new Dimension(dimension, dimension);
 
     }
-
 	
 	public SnakePanel() {
 		addKeyListener(this);
+		background  = new Background(unit, dimension);
 		snake = new Snake(unit, dimension);
 		apple = new Apple(snake.snakeLocation, unit, dimension);
 		words = new Text();
@@ -46,15 +47,13 @@ public class SnakePanel extends JPanel implements KeyListener{
 	 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(Color.black);
-        g.fillRect(0, 0, dimension, dimension);
+        background.draw(g);
         apple.draw(g);
 		snake.draw(g);
 		words.write(g);	
     }
 
 	public void keyPressed(KeyEvent e) {
-		
 		snake.turn(e);
 		paused = false;
 		//System.out.println("key pressed");
@@ -79,8 +78,8 @@ public class SnakePanel extends JPanel implements KeyListener{
 				snake.move(true);
 				speed = checkSpeed(speed);
 				
-				//System.out.println("speed: " + (speed));
-				//System.out.println("size: " + (snake.snakeLocation.size()));
+				System.out.println("speed: " + (speed));
+				System.out.println("size: " + (snake.snakeLocation.size()));
 				
 			} else {snake.move(false);}
 			

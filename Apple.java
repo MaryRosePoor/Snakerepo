@@ -23,7 +23,7 @@ public class Apple {
 			//Check if apple location overlaps with the snake
 			for (int i=0; i<snakeLocation.size()-1; i++) {
 				if (snakeLocation.get(i).equals(appleLocation)) {
-					System.out.println("overlap");
+					//System.out.println("overlap");
 					appleLocation.clear();
 					loop = true;
 				}
