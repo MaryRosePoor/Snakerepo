@@ -13,7 +13,7 @@ public class SnakePanel extends JPanel implements KeyListener{
 	Snake snake;
 	Apple apple;
 	Text words;
-	int speed, unit = 15, dimension = 495;
+	int speed, unit = 20, dimension = unit*33;
 	boolean paused;
 	
 	public Dimension getPreferredSize() {
