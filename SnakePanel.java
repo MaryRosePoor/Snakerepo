@@ -26,7 +26,7 @@ public class SnakePanel extends JPanel implements KeyListener{
 		background  = new Background(unit, dimension);
 		snake = new Snake(unit, dimension);
 		apple = new Apple(snake.snakeLocation, unit, dimension);
-		words = new Text();
+		words = new Text(unit, dimension);
 		paused = true;
 	}
 
