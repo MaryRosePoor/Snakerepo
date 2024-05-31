@@ -12,8 +12,8 @@ public class SnakePanel extends JPanel implements KeyListener{
     Background background;
 	Snake snake;
 	Apple apple;
-	Text words;
-	int speed, unit = 20, dimension = unit*33;
+	Text scoretext, highscoretext;
+	int speed, unit = 20, dimension = unit*33, highscore = 0;
 	boolean paused;
 	
 	public Dimension getPreferredSize() {
@@ -26,13 +26,18 @@ public class SnakePanel extends JPanel implements KeyListener{
 		background  = new Background(unit, dimension);
 		snake = new Snake(unit, dimension);
 		apple = new Apple(snake.snakeLocation, unit, dimension);
-		words = new Text(unit, dimension);
+		scoretext = new Text((dimension/2)-50, (dimension/2)-30);
+		highscoretext = new Text((dimension/2)-75, (dimension/2)-50);
 		paused = true;
 	}
 
     public void startGame() {
-        showText("Score: " + (snake.snakeLocation.size()-10));
+		if ((snake.snakeLocation.size()-10) > highscore) {
+			highscore = snake.snakeLocation.size()-10;
+		}
 		
+        showText();
+
 		snake = new Snake(unit, dimension);
         apple = new Apple(snake.snakeLocation, unit, dimension);
 		speed = 180;
@@ -50,7 +55,8 @@ public class SnakePanel extends JPanel implements KeyListener{
         background.draw(g);
         apple.draw(g);
 		snake.draw(g);
-		words.write(g);	
+		scoretext.write(g);	
+		highscoretext.write(g);	
     }
 
 	public void keyPressed(KeyEvent e) {
@@ -78,8 +84,8 @@ public class SnakePanel extends JPanel implements KeyListener{
 				snake.move(true);
 				speed = checkSpeed(speed);
 				
-				System.out.println("speed: " + (speed));
-				System.out.println("size: " + (snake.snakeLocation.size()));
+				//System.out.println("speed: " + (speed));
+				//System.out.println("size: " + (snake.snakeLocation.size()));
 				
 			} else {snake.move(false);}
 			
@@ -89,14 +95,16 @@ public class SnakePanel extends JPanel implements KeyListener{
                 Thread.currentThread().interrupt();
             }
 			
-			words.setWords("");
+			scoretext.setWords("");
+			highscoretext.setWords("");
 			
             repaint();
         }
     }
 	
-	public void showText(String message) {
-		words.setWords(message);
+	public void showText() {
+		scoretext.setWords("Score: " + (snake.snakeLocation.size()-10));
+		highscoretext.setWords("High Score: " + highscore);
 		
 		repaint();
 	}
